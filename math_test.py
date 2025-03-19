@@ -7,6 +7,9 @@ def fail(*args):
     k = 8 - sum(args)
     return ( c(n, k) * c(13, args[-1]) )
 
+def similar_f(a, b, c_, d):
+    return c(13, a) * c(13, b) * c(13, c_) * c(13, d) / c(52, a+b+c_+d)
+
 def f(a, b, c_, d):
     return c(13, a) * c(13, b) * c(13, c_) * c(13, d)
 
@@ -35,14 +38,35 @@ def product(range_, func):
     return p
 
 def p_duplicates(x):
-    return x
-    # return product(range(x-2), lambda n: (13 - 2 - n) / (52 - 2 - n)) * product(range(x + 1, 9), lambda n: (13 * 3 - (n - (x + 1) )) / (52 - 2 - n) )
+    range_1 = (0, x-3)
+    range_2 = (x-2, 8-x)
+    return product(range(range_1[0], range_1[1] + 1), lambda n: (13 - 2 - n) / (52 - 2 - n)) * product(range(range_2[0], range_2[1] + 1), lambda n: (13 * 3 - (n - range_2[0] )) / (52 - 2 - n) )
+    
+def odds_max_suit(x):
+    tmp_counter = 0
+    s = 0
+    for a in range(9):
+        for b in range(9):
+            for c_ in range(9):
+                for d in range(9):
+                    if a + b + c_ + d == 8:
+                        tmp_counter += 1
+                        if max(a, b, c_, d) == x:
+                            s += f(a, b, c_, d) / c(52, 8)
+    return s
+            
+mode = 'test'
 
-def p_duplicates(x):
+if mode == 'test':
+    print(similar_f(1, 0, 0, 0))
 
-mode = 'a 4'
+elif mode == 'starting odds':
+    for x in range(0, 9):
+        probability = odds_max_suit(x)
+        # print(f'{x=}: {probability * 100} %')
+        print(f'{x}\t{probability}')
 
-if mode == 'a 4':
+elif mode == 'a 4':
     data = {}
     
     for x in range(3, 9):
@@ -60,8 +84,6 @@ if mode == 'a 4':
             p_sum += data[key_2]
 
         print(p_sum)
-            
-
 
 elif mode == 'a 3':
     # a, b, c_, d = 2, 2, 2, 2

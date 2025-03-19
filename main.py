@@ -169,12 +169,12 @@ while True:
         break
 
     print(f'Start discarding ({hand.discards_left} left)')
-    discard_indices = []
+    discard_indices = set()
     for i in range(5):
         command = input(f'({i + 1} / 5) > ')
         if not command:
             break
-        discard_indices.append(int(command) - 1)
+        discard_indices.add(int(command) - 1)
 
     discard_indices.sort(reverse=True)
     for discard_index in discard_indices:
