@@ -184,8 +184,10 @@ def simulate():
                 good_cards += 1
                 new_cards.append(card)
             else:
-                # if bad_cards >= 5:
-                #     new_cards.append(card)
+                ########
+                if bad_cards >= 5:
+                    new_cards.append(card)
+                ########
                 bad_cards += 1
 
             if good_cards == 5:
@@ -201,7 +203,7 @@ def simulate():
 
     return False, discards
 
-SIMULATIONS = 500_000
+SIMULATIONS = 1_000_000
 DEBUG = False
 
 all_wins = {
