@@ -24,21 +24,21 @@ def P2(x, y, z):
     return c(13-y-x, z)*c(bad_cards, r-z) / c(44 - min(5, 8-x), r)
 
     
-# for y in range(9):
-#     for x in range(9):
-#         ans = P1(x, y)
-#         print(ans, end='\t')
-#     print()
-
-COORDS = ((2,0),(3,0),(4,0),(2,1),(3,1),(2,2))
-# COORDS = ((3,1), )
-
-for z in range(7):
-    # print(z)
-    for coord in COORDS:
-        x, y = coord
-        print(P2(x, y, z), end='\t')
+for y in range(9):
+    for x in range(9):
+        ans = P1(x, y)
+        print(ans, end='\t')
     print()
+
+# COORDS = ((2,0),(3,0),(4,0),(2,1),(3,1),(2,2))
+# # COORDS = ((3,1), )
+#
+# for z in range(7):
+#     # print(z)
+#     for coord in COORDS:
+#         x, y = coord
+#         print(P2(x, y, z), end='\t')
+#     print()
 
 '''
 suppose you choose 8 cards from a deck of 52
