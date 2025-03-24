@@ -157,7 +157,7 @@ class Hand:
 def percent(a, b):
     return f'{round(a/b * 100, 4)} %'
 
-SIMULATIONS = 2_000_000
+SIMULATIONS = 1_000_000
 
 def simulate():
     hand = Hand()

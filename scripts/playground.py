@@ -7,6 +7,19 @@ def P1(x, y):
         return 0
 
     # return c(13-x, y)*c(31+x, r-y) / c(47, r)
+    c_des = 13-x
+    c_des_tir = y
+    c_indes = 31 + x
+    c_indes_tir = r-y
+    c_restants = 44
+    c_restants_tir = r
+    print(f'{c_des=}')
+    print(f'{c_des_tir=}')
+    print(f'{c_indes=}')
+    print(f'{c_indes_tir=}')
+    print(f'{c_restants=}')
+    print(f'{c_restants_tir=}')
+
     return c(13-x, y)*c(31+x, r-y) / c(44, r)
     # return c(13-x, y)*c(39-(r-y), r-y) / c(44, r)
 
@@ -23,12 +36,16 @@ def P2(x, y, z):
     # print((x, y, z), f'{bad_cards=}', f'r0={8-x}', f'r1={min(5, 8-x)}', f'r2={r}')
     return c(13-y-x, z)*c(bad_cards, r-z) / c(44 - min(5, 8-x), r)
 
+
+
+print(P1(2, 4))
     
-for y in range(9):
-    for x in range(9):
-        ans = P1(x, y)
-        print(ans, end='\t')
-    print()
+# for y in range(9):
+#     for x in range(9):
+#         ans = P1(x, y)
+#         print(ans, end='\t')
+#     print()
+
 
 # COORDS = ((2,0),(3,0),(4,0),(2,1),(3,1),(2,2))
 # # COORDS = ((3,1), )
