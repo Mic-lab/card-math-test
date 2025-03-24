@@ -2,7 +2,13 @@ from itertools import combinations, product
 from math import comb as c
 
 def r(i, *args):
-    return min(5, 8-args[i])
+    # print(f'r({i})')
+    cards_to_remove = 8
+    for j in range(i+1):
+        cards_to_remove -= args[j]
+        # print(f'\t-{args[j]}')
+    # print(f'\tr({i}) = min(5, {cards_to_remove})')
+    return min(5, cards_to_remove)
 
 
 def p_start(a, b, c_, d):
@@ -37,19 +43,28 @@ def p_flush(n):
         # rest 2
         elif sum(args) < 5:
             continue
-        odds += p_inconditionelle(*args)
+        
+
+        added_odds = p_inconditionelle(*args)
+        odds += added_odds
+        # if added_odds != 0:
+        #     print('Adding', args, added_odds * 100, '%')
     return odds
 
 
 def p_inconditionelle(*args):
-    # print(f'--- [p_inconditionelle] {args} ---')
     product_ = 1
     for i in range(len(args)):
-        # print(f'\t{product_=}')
+        # print(f'\t{product_*100=}')
         product_ *= p_exacte(*args[:i+1])
-        # print(f'\t times {p_exacte(*args[:i+1])}')
+        # print(f'\t times {p_exacte(*args[:i+1]) * 100} ({args[:i+1]})')
         # print(f'\t new : {product_}')
-    # print(args, product_ * 100)
+
+    if product_ != 0:
+        # print(f'--- [p_inconditionelle] {args} ---')
+        # print(args, product_ * 100)
+        # print('adding', args, product_ * 100)
+        pass
     return product_
 
 def p_exacte(*args):
@@ -66,14 +81,24 @@ def p_exacte(*args):
 
         cartes_desirees_tirees = args[-1]
 
+        # print('----')
         cartes_indesirees = 39
         for i in range(1, n):
 
 
             if i == 1:
                 cartes_indesirees -= 8 - args[i - 1]
+                # print(f'minus {8 - args[i - 1]}')
+                # print()
             else:
-                cartes_indesirees -= r(i-1, *args) + args[i-1]
+                # minus not plus!!!! > v <
+                # cartes_indesirees -= r(i-1, *args) - args[i-1]
+
+                subtract = r(i-2, *args) - args[i-1]
+                # print(f'minus {subtract}')
+                cartes_indesirees -= subtract
+                # print(f'vv is r({i-1})')
+        # print('----')
 
         # print(r(n-1, *args), '<')
 
@@ -84,7 +109,7 @@ def p_exacte(*args):
             if i == 1:
                 cartes_restants -= 8
             else:
-                cartes_restants -= r(i-1, *args)
+                cartes_restants -= r(i-2, *args)
 
         # cartes_restants_tirees = r(n - 1, *args)
         cartes_restants_tirees = r(n - 2, *args)
@@ -109,5 +134,13 @@ def p_exacte(*args):
     return ans
 
 # print(p_inconditionelle(3, 2))
-for i in range(8):
+
+
+# print(p_exacte(2,1,2))
+# print(p_exacte(4,0,4))
+# print(p_exacte(2,2,1))
+
+for i in range(9):
+
+    # if i == 3:
     print(f'\nFinal answer {i}:', p_flush(i) * 100)

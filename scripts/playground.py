@@ -31,14 +31,35 @@ def P2(x, y, z):
 
     # bad_cards = 39 - min(5, 8-x) - r
     bad_cards = 39 - (8 - x) - min(5, 8-x) + y
+    print(f'{(8 - x)=}')
+    print(f'{min(5, 8-x) - y=}')
 
     # print()
     # print((x, y, z), f'{bad_cards=}', f'r0={8-x}', f'r1={min(5, 8-x)}', f'r2={r}')
+
+
+
+
+    c_des = 13-x-y
+    c_des_tir = z
+    c_indes = bad_cards
+    c_indes_tir = r-z
+    c_restants = 44 - min(5, 8-x)
+    c_restants_tir = r
+    print(f'{c_des=}')
+    print(f'{c_des_tir=}')
+    print(f'{c_indes=}')
+    print(f'{c_indes_tir=}')
+    print(f'{c_restants=}')
+    print(f'{c_restants_tir=}')
     return c(13-y-x, z)*c(bad_cards, r-z) / c(44 - min(5, 8-x), r)
 
 
 
-print(P1(2, 4))
+# print(P1(2, 4))
+# print(P2(2, 1, 2), (2,1,2))
+# print(P2(4, 0, 4), (4,0,4))
+print(P2(2, 2, 1), (2,2,1))
     
 # for y in range(9):
 #     for x in range(9):

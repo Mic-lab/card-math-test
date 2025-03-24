@@ -1,4 +1,5 @@
 from random import shuffle
+from time import time
 
 fg = lambda text, color: "\33[38;5;" + str(color) + "m" + text + "\33[0m"
 bg = lambda text, color: "\33[48;5;" + str(color) + "m" + text + "\33[0m"
@@ -203,7 +204,7 @@ def simulate():
 
     return False, discards
 
-SIMULATIONS = 1_000_000
+SIMULATIONS = 10_000_000
 DEBUG = False
 
 all_wins = {
@@ -212,12 +213,14 @@ all_wins = {
     2: 0,
     3: 0}
 
+t0 = time()
 next_completion_ratio = 0
 for i in range(SIMULATIONS):
     completion_ratio = i / SIMULATIONS
     if completion_ratio >= next_completion_ratio:
         next_completion_ratio += 0.1
-        print(round(completion_ratio * 100), '%')
+        t1 = time()
+        print(round(completion_ratio * 100), '%', round(t0-t1), 's')
     win, discards = simulate()
     dprint('WIN' if win else 'LOSS', discards)
     dinput('------------------------------------\n> ')
