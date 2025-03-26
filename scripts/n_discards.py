@@ -71,6 +71,7 @@ def p_exacte(*args):
     # print(f'[p_exacte {args}]')
     n = len(args)
 
+    # if n == 1 and False:
     if n == 1:
         ans = p0_exacte(args[0])
 
@@ -97,7 +98,7 @@ def p_exacte(*args):
                 subtract = r(i-2, *args) - args[i-1]
                 # print(f'minus {subtract}')
                 cartes_indesirees -= subtract
-                # print(f'vv is r({i-1})')
+                #or print(f'vv is r({i-1})')
         # print('----')
 
         # print(r(n-1, *args), '<')
@@ -139,6 +140,7 @@ def p_exacte(*args):
 # print(p_exacte(2,1,2))
 # print(p_exacte(4,0,4))
 # print(p_exacte(2,2,1))
+# print(p_exacte(2))
 
 for i in range(9):
 

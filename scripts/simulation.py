@@ -202,7 +202,8 @@ def simulate():
         # print('after:')
         # hand.print_cards()
 
-        if discards == 3:
+        # if discards == 3:
+        if discards == 4:
             return False, discards
 
         # print('_' * 50, end='\n\n')
