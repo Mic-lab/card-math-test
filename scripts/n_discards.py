@@ -2,12 +2,12 @@ from itertools import combinations, product
 from math import comb as c
 
 def r(i, *args):
-    print(f'r{i}, {args}')
+    # print(f'r{i}, {args}')
     # print(f'r({i})')
     cards_to_remove = 8
-    for j in range(i+1):
+    for j in range(i):
         cards_to_remove -= args[j]
-        print(args[j])
+        # print(args[j])
         # print(f'\t-{args[j]}')
     # print(f'\tr({i}) = min(5, {cards_to_remove})')
     return min(5, cards_to_remove)
@@ -97,7 +97,7 @@ def p_exacte(*args):
                 # minus not plus!!!! > v <
                 # cartes_indesirees -= r(i-1, *args) - args[i-1]
 
-                subtract = r(i-2, *args) - args[i-1]
+                subtract = r(i-1, *args) - args[i-1]
                 # print(f'minus {subtract}')
                 cartes_indesirees -= subtract
                 #or print(f'vv is r({i-1})')
@@ -105,18 +105,18 @@ def p_exacte(*args):
 
         # print(r(n-1, *args), '<')
 
-        cartes_indesirees_tirees = r(n-2, *args) - args[-1]
-        print(args, n-2, r(n-2, *args))
+        cartes_indesirees_tirees = r(n-1, *args) - args[-1]
+        # print(args, n-2, r(n-2, *args))
 
         cartes_restants = 52
         for i in range(1, n):
             if i == 1:
                 cartes_restants -= 8
             else:
-                cartes_restants -= r(i-2, *args)
+                cartes_restants -= r(i-1, *args)
 
         # cartes_restants_tirees = r(n - 1, *args)
-        cartes_restants_tirees = r(n - 2, *args)
+        cartes_restants_tirees = r(n - 1, *args)
 
 
         if cartes_indesirees_tirees < 0:
