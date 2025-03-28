@@ -145,7 +145,7 @@ def p_exacte(*args):
 # print(p_exacte(2,2,1))
 # print(p_exacte(2))
 
-for i in range(9):
+for i in range(15):
 
     # if i == 3:
     print(f'\nFinal answer {i}:', p_flush(i) * 100)

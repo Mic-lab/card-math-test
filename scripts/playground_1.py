@@ -1,10 +1,10 @@
 from math import comb
 
-def p_exacte(a, b, c, d):
+def P_tirer(a, b, c, d):
     # NOTE: comb est la fonction combinaison
     return (comb(13, a) * comb(13, b) * comb(13, c) * comb(13, d)) / comb(52, a + b + c + d)
 
-def p0_exacte(x):
+def P0_exacte(x):
 
     sum_ = 0
 
@@ -18,7 +18,7 @@ def p0_exacte(x):
                     
                     # Assure que condition (1) et condition (3) sont satisfaites
                     if a + b + c + d == 8 and max(a, b, c, d) == x:
-                        sum_ += p_exacte(a, b, c, d)
+                        sum_ += P_tirer(a, b, c, d)
 
     return sum_
 

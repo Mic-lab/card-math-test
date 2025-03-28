@@ -186,8 +186,8 @@ def simulate():
                 new_cards.append(card)
             else:
                 ########
-                if bad_cards >= 5:
-                    new_cards.append(card)
+                # if bad_cards >= 5:
+                #     new_cards.append(card)
                 ########
                 bad_cards += 1
 
@@ -204,7 +204,7 @@ def simulate():
 
     return False, discards
 
-SIMULATIONS = 10_000_000
+SIMULATIONS = 1_000_000
 DEBUG = False
 
 all_wins = {
@@ -220,7 +220,7 @@ for i in range(SIMULATIONS):
     if completion_ratio >= next_completion_ratio:
         next_completion_ratio += 0.1
         t1 = time()
-        print(round(completion_ratio * 100), '%', round(t0-t1), 's')
+        print(round(completion_ratio * 100), '%', round(t1-t0), 's')
     win, discards = simulate()
     dprint('WIN' if win else 'LOSS', discards)
     dinput('------------------------------------\n> ')
